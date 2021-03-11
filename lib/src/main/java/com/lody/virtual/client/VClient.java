@@ -66,6 +66,7 @@ import com.lody.virtual.remote.ClientConfig;
 import com.lody.virtual.remote.InstalledAppInfo;
 import com.lody.virtual.remote.PendingResultData;
 import com.lody.virtual.remote.VDeviceConfig;
+import com.lody.virtual.sandxposed.SandXposed;
 import com.lody.virtual.server.pm.PackageSetting;
 import com.xdja.activitycounter.ActivityCounterManager;
 import com.xdja.zs.VAppPermissionManager;
@@ -562,8 +563,23 @@ public final class VClient extends IVClient.Stub {
 //            if(LoadedApk.mApplication != null) {
 //                LoadedApk.mApplication.set(data.info, null);
 //            }
+//            try {
+//                    System.loadLibrary("JDMobileSec");
+//            }catch (Exception e){
+//                VLog.i("yich","client LOAD JDMobileSec:"+e.getMessage());
+//                e.printStackTrace();
+//            }
+
+            VLog.i("yich","client context classLoader:"+context.getClassLoader()+"id:"+context.hashCode());
+
+
+            SandXposed.injectXposedModule(context,data.appInfo.packageName,data.appInfo.processName);
+
             mInitialApplication = LoadedApk.makeApplication.call(data.info, false, null);
-        } catch (Throwable e) {
+//            SandXposed.injectXposedModule(context,data.appInfo.packageName,data.appInfo.processName);
+//            SandXposed.injectXposedModule(context,data.appInfo.packageName,data.appInfo.processName);
+
+             } catch (Throwable e) {
             throw new RuntimeException("Unable to makeApplication", e);
         }
         Log.e("kk", data.info+" mInitialApplication set  " + LoadedApk.mApplication.get(data.info));
@@ -666,6 +682,10 @@ public final class VClient extends IVClient.Stub {
             String libPath = VEnvironment.getAppLibDirectory(module.packageName).getAbsolutePath();
             LoadModules.loadModule(module.getApkPath(), module.getOdexFile().getParent(), libPath, mInitialApplication);
         }*/
+    }
+
+    private void installAllMoudles(AppBindData data) {
+        SandXposed.injectXposedModule(createPackageContext(data.appInfo),data.appInfo.packageName,data.appInfo.processName);
     }
 
     private void initDataStorage(boolean is64bit, int userId, String pkg) {
@@ -964,6 +984,7 @@ public final class VClient extends IVClient.Stub {
             final String packageName = appInfo.packageName;
             Context hostContext = VirtualCore.get().getContext();
             Context appContext = hostContext.createPackageContext(packageName, Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
+            VLog.w("yich", "host context classLoader:"+hostContext.getClassLoader());
             if (appContext != null) {
                 if (appContext.getApplicationInfo().nativeLibraryDir == null) {
                     VLog.w(TAG, "fix nativeLibraryDir");

@@ -3,11 +3,12 @@ apply plugin: 'com.android.application'
 
 android {
 
-    compileSdkVersion 26
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId rootProject.ext.PACKAGE_NAME_32BIT
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 180080814
         versionName "2.2.3"
         multiDexEnabled false
@@ -57,8 +58,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':lib')
-    implementation 'com.swift.sandhook:hooklib:4.2.0'
-    implementation 'com.swift.sandhook:xposedcompat:4.2.0'
+//    implementation 'com.swift.sandhook:hooklib:4.2.1'
+//    implementation 'com.swift.sandhook:xposedcompat:4.2.1'
     //Android Lib
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.android.support:percent:26.1.0'
@@ -81,4 +82,5 @@ dependencies {
     //implementation 'com.xdja.safekeyservice:jar_multi_jniapi:3.9.50'
     //implementation 'com.xdja.safekeyservice:jar_multi_unitepin:3.9.24'
     implementation 'com.google.code.gson:gson:2.6.2'
+    implementation project(path: ':xposedcompat')
 }

@@ -26,6 +26,7 @@ import com.lody.virtual.client.env.Constants;
 import com.lody.virtual.client.ipc.VActivityManager;
 import com.lody.virtual.client.stub.InstallerSetting;
 import com.lody.virtual.helper.utils.VLog;
+import com.lody.virtual.sandxposed.SandXposed;
 import com.xdja.zs.BoxProvider;
 import com.xdja.zs.VServiceKeepAliveManager;
 
@@ -306,6 +307,7 @@ public class App extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        SandXposed.init();
         //demo always is debug
         VLog.OPEN_LOG = true;
         try {

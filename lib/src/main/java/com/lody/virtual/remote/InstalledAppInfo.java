@@ -20,6 +20,10 @@ public final class InstalledAppInfo implements Parcelable {
     public static final int MODE_APP_COPY_APK = 0;
     public static final int MODE_APP_USE_OUTSIDE_APK = 1;
 
+    public final static int FLAG_ENABLED_XPOSED_MODULE = 1 << 30;
+    public final static int FLAG_XPOSED_MODULE = 1 << 28;
+    public final static int FLAG_EXCLUDE_XPOSED_MODULE = 1 << 29;
+
     public String packageName;
     public int appMode;
     public int flag;

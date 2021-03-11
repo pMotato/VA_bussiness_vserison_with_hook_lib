@@ -1,2 +1,2 @@
-include ':lib', ':app'
+include ':lib', ':app' ,':hooklib', ':hookers', ':annotation', ':xposedcompat', ':nativehook'
 //, ':libsandhook'

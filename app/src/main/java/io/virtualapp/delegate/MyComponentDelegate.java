@@ -4,18 +4,9 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.lody.virtual.client.NativeEngine;
 import com.lody.virtual.client.core.AppCallback;
-import com.lody.virtual.helper.compat.BuildCompat;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.Arrays;
-
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedHelpers;
 
 public class MyComponentDelegate implements AppCallback {
 
@@ -30,6 +21,22 @@ public class MyComponentDelegate implements AppCallback {
 
     @Override
     public void afterApplicationCreate(String packageName, String processName, Application application) {
+
+//        XposedHelpers.findAndHookMethod("android.content.res.JDMobiSec", application.getClassLoader(),
+//                        "n1", String.class,new XC_MethodHook() {
+//                            @Override
+//                            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+//                                VLog.i("yich", "hook之前的返回的字符："+param.args[0]);
+//
+//                                super.beforeHookedMethod(param);
+//                            }
+//
+//                    @Override
+//                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//                        VLog.i("yich", "hook之后的返回的的字符："+param.getResult());
+//                        super.afterHookedMethod(param);
+//                    }
+//                });
 //        Log.e("kk-test", "path=" + NativeEngine.getRedirectedPath("/data/data/" + packageName + "/"));
 //        Log.e("kk-test", "path=" + NativeEngine.getRedirectedPath("/data/data/" + packageName));
 //        try {

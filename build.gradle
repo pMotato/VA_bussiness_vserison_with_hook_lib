@@ -3,6 +3,12 @@ apply from: 'VAConfig.gradle'
 
 buildscript {
     repositories {
+        maven {
+            url "https://maven.aliyun.com/repository/jcenter"
+        }
+        maven {
+            url "https://maven.aliyun.com/repository/google"
+        }
         jcenter()
         maven {
             url 'https://maven.google.com/'
@@ -10,8 +16,9 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
-        classpath 'com.android.tools.build:gradle-experimental:0.11.1'
+        classpath 'com.android.tools.build:gradle:3.5.0'
+
+        classpath 'com.novoda:bintray-release:0.9.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -19,6 +26,12 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            url "https://maven.aliyun.com/repository/jcenter"
+        }
+        maven {
+            url "https://maven.aliyun.com/repository/google"
+        }
         jcenter()
         maven {
             url "https://jitpack.io"
