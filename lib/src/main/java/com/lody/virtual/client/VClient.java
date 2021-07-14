@@ -142,6 +142,7 @@ public final class VClient extends IVClient.Stub {
     private ConditionVariable mBindingApplicationLock;
     private boolean mEnvironmentPrepared = false;
     private int systemPid;
+    boolean hasLoged=false;
 
     public InstalledAppInfo getAppInfo() {
         return mAppInfo;
@@ -570,8 +571,6 @@ public final class VClient extends IVClient.Stub {
 //                e.printStackTrace();
 //            }
 
-            VLog.i("yich","client context classLoader:"+context.getClassLoader()+"id:"+context.hashCode());
-
 
             SandXposed.injectXposedModule(context,data.appInfo.packageName,data.appInfo.processName);
 
@@ -984,7 +983,11 @@ public final class VClient extends IVClient.Stub {
             final String packageName = appInfo.packageName;
             Context hostContext = VirtualCore.get().getContext();
             Context appContext = hostContext.createPackageContext(packageName, Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
-            VLog.w("yich", "host context classLoader:"+hostContext.getClassLoader());
+            if (!hasLoged){
+                hasLoged=true;
+                VLog.w("yich", "host context classLoader:"+hostContext.getClassLoader());
+            }
+
             if (appContext != null) {
                 if (appContext.getApplicationInfo().nativeLibraryDir == null) {
                     VLog.w(TAG, "fix nativeLibraryDir");

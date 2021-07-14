@@ -19,6 +19,8 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
+import static de.robv.android.xposed.XposedBridge.TAG;
+
 public class HookStubManager {
 
     public static volatile boolean is64Bit;
@@ -299,7 +301,8 @@ public class HookStubManager {
                     param.setResult(SandHook.callOriginMethod(originMethod, entity.backup, thiz, param.args));
                 }
             } catch (Throwable e) {
-                XposedBridge.log(e);
+//                XposedBridge.log(e);
+                Log.e(TAG,"hookBridge() failed:"+e.getMessage());
                 param.setThrowable(e);
             }
         }

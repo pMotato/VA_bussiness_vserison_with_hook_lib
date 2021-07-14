@@ -1,5 +1,7 @@
 package com.swift.sandhook.xposedcompat.classloaders;
 
+import android.util.Log;
+
 public class ProxyClassLoader extends ClassLoader {
 
     private final ClassLoader mClassLoader;
@@ -7,6 +9,7 @@ public class ProxyClassLoader extends ClassLoader {
     public ProxyClassLoader(ClassLoader parentCL, ClassLoader appCL) {
         super(parentCL);
         mClassLoader = appCL;
+        Log.i("yich","ProxyClassLoader inner class Classloader:"+mClassLoader);
     }
 
     @Override

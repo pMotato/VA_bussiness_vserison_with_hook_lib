@@ -73,7 +73,7 @@ public final class XposedInit {
         }
 
         if (dexFile.loadClass(XposedBridge.class.getName(), topClassLoader) != null) {
-            Log.e(TAG, "  Cannot load module:");
+            Log.e(TAG, "  Cannot load module load dex path:"+modulePath);
             Log.e(TAG, "  The Xposed API classes are compiled into the module's APK.");
             Log.e(TAG, "  This may cause strange issues and must be fixed by the module developer.");
             Log.e(TAG, "  For details, see: http://api.xposed.info/using.html");
@@ -82,7 +82,7 @@ public final class XposedInit {
         }
 
         closeSilently(dexFile);
-
+        Log.i(TAG, " after check ,and load dex path:"+modulePath);
         ZipFile zipFile = null;
         InputStream is;
         try {
