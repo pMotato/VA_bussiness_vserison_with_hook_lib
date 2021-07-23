@@ -559,6 +559,7 @@ public final class VirtualCore {
         mainProcessName = context.getApplicationInfo().processName;
         // Current process name
         processName = getProcessName(context);
+        VLog.d(TAG,"detectProcessType====hostPkgName:"+hostPkgName+";mainProcessName:"+mainProcessName+";processName:"+processName);
         isHostPulginApp = StubManifest.isHostPluginPackageName(hostPkgName);
         if (processName.equals(mainProcessName)) {
             processType = ProcessType.Main;

@@ -7,6 +7,7 @@ import android.os.Parcelable;
 
 import com.lody.virtual.client.core.VirtualCore;
 import com.lody.virtual.helper.compat.ContentProviderCompat;
+import com.lody.virtual.helper.utils.VLog;
 
 import java.io.Serializable;
 
@@ -31,6 +32,7 @@ public class ProviderCall {
 
     public static final class Builder {
 
+        private static final String TAG = "ProviderCall";
         private Context context;
 
         private Bundle bundle = new Bundle();
@@ -84,6 +86,7 @@ public class ProviderCall {
         }
 
         public Bundle call() throws IllegalAccessException {
+            VLog.d(TAG,"IPC call auth:"+auth+":context:"+context.getPackageName()+";method:"+method+";arg:"+arg+";bundle:"+bundle+";retryCount:"+retryCount);
             return ProviderCall.call(auth, context, method, arg, bundle, retryCount);
         }
 

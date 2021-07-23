@@ -8,6 +8,7 @@ import com.lody.virtual.client.hook.annotations.Inject;
 import com.lody.virtual.client.hook.annotations.LogInvocation;
 import com.lody.virtual.client.hook.annotations.SkipInject;
 import com.lody.virtual.client.interfaces.IInjector;
+import com.lody.virtual.helper.utils.VLog;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -28,6 +29,7 @@ import java.lang.reflect.Modifier;
  */
 public abstract class MethodInvocationProxy<T extends MethodInvocationStub> implements IInjector {
 
+    private static final String TAG = "MethodInvocationProxy";
     protected T mInvocationStub;
 
     public MethodInvocationProxy(T invocationStub) {
@@ -51,7 +53,9 @@ public abstract class MethodInvocationProxy<T extends MethodInvocationStub> impl
         if (inject != null) {
             Class<?> proxiesClass = inject.value();
             Class<?>[] innerClasses = proxiesClass.getDeclaredClasses();
+
             for (Class<?> innerClass : innerClasses) {
+                VLog.d(TAG,":inject:"+inject+";proxiesClass:"+proxiesClass+";innerClass:"+innerClass);
                 if (!Modifier.isAbstract(innerClass.getModifiers())
                         && MethodProxy.class.isAssignableFrom(innerClass)
                         && innerClass.getAnnotation(SkipInject.class) == null) {

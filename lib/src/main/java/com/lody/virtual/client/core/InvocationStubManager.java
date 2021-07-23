@@ -234,8 +234,8 @@ public final class InvocationStubManager {
         }
     }
 
-    private void addInjector(IInjector IInjector) {
-        mInjectors.put(IInjector.getClass(), IInjector);
+    private void addInjector(IInjector iInjector) {
+        mInjectors.put(iInjector.getClass(), iInjector);
     }
 
     public <T extends IInjector> T findInjector(Class<T> clazz) {

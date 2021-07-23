@@ -35,7 +35,7 @@ public class MethodInvocationStub<T> {
     private T mBaseInterface;
     private T mProxyInterface;
     private MethodProxy mDefaultProxy;
-    private LogInvocation.Condition mInvocationLoggingCondition = LogInvocation.Condition.NEVER;
+    private LogInvocation.Condition mInvocationLoggingCondition = LogInvocation.Condition.ALWAYS;
 
 
     public Map<String, MethodProxy> getAllHooks() {
@@ -214,7 +214,8 @@ public class MethodInvocationStub<T> {
                             retString = String.valueOf(res);
                         }
 
-                        Log.println(logPriority, TAG, method.getDeclaringClass().getSimpleName() + "." + method.getName() + "(" + argStr + ") => " + retString);
+//                        Log.println(logPriority, TAG, method.getDeclaringClass().getSimpleName() + "." + method.getName() + "(" + argStr + ") => " + retString);
+                        VLog.d(TAG, method.getDeclaringClass().getSimpleName() + "." + method.getName() + "(" + argStr + ") => " + retString);
                     }
                 }
             }

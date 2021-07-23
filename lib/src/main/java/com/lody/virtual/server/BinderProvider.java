@@ -216,6 +216,7 @@ public final class BinderProvider extends ContentProvider {
 
     @Override
     public Bundle call(String method, String arg, Bundle extras) {
+        VLog.d(TAG,"binderProvider called, method:"+method+";arg:"+arg+";extras:"+extras);
         if (!sInitialized) {
             init();
         }

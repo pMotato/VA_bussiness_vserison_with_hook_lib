@@ -12,15 +12,17 @@ public class VLog {
 
     public static boolean OPEN_LOG = true;
 
+    public static String TAG_PREFIX = "[yich]";
+
     public static void i(String tag, String msg, Object... format) {
         if (OPEN_LOG) {
-            Log.i(tag, String.format(msg, format));
+            Log.i(TAG_PREFIX+tag, String.format(msg, format));
         }
     }
 
     public static void d(String tag, String msg, Object... format) {
         if (OPEN_LOG) {
-            Log.d(tag, String.format(msg, format));
+            Log.d(TAG_PREFIX+tag, String.format(msg, format));
         }
     }
 
@@ -30,31 +32,31 @@ public class VLog {
 
     public static void w(String tag, String msg, Object... format) {
         if (OPEN_LOG) {
-            Log.w(tag, String.format(msg, format));
+            Log.w(TAG_PREFIX+tag, String.format(msg, format));
         }
     }
 
     public static void e(String tag, String msg) {
         if (OPEN_LOG) {
-            Log.e(tag, msg);
+            Log.e(TAG_PREFIX+tag, msg);
         }
     }
 
     public static void e(String tag, String msg, Object... format) {
         if (OPEN_LOG) {
-            Log.e(tag, String.format(msg, format));
+            Log.e(TAG_PREFIX+tag, String.format(msg, format));
         }
     }
 
     public static void v(String tag, String msg) {
         if (OPEN_LOG) {
-            Log.v(tag, msg);
+            Log.v(TAG_PREFIX+tag, msg);
         }
     }
 
     public static void v(String tag, String msg, Object... format) {
         if (OPEN_LOG) {
-            Log.v(tag, String.format(msg, format));
+            Log.v(TAG_PREFIX+tag, String.format(msg, format));
         }
     }
 

@@ -13,6 +13,8 @@ import com.lody.virtual.server.ServiceCache;
 import com.lody.virtual.server.interfaces.IServiceFetcher;
 
 /**
+ *  本地所有服务的管理类
+ *
  * @author Lody
  */
 public class ServiceManagerNative {
@@ -67,6 +69,7 @@ public class ServiceManagerNative {
     }
 
     public static void ensureServerStarted() {
+        VLog.d(TAG,"ensureServerStarted called");
         new ProviderCall.Builder(VirtualCore.get().getContext(), getAuthority()).methodName("ensure_created").callSafely();
     }
 

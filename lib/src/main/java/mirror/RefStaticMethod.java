@@ -6,9 +6,9 @@ import java.lang.reflect.Method;
 
 @SuppressWarnings("unchecked")
 public class RefStaticMethod<T> {
-    private Method method;
-    private String parent;
-    private String name;
+    private Method method;//原始的类的method
+    private String parent;//原始类的类名
+    private String name;//要关联的名字
 
     public RefStaticMethod(Class<?> cls, Field field) throws NoSuchMethodException {
         this.name = field.getName();
