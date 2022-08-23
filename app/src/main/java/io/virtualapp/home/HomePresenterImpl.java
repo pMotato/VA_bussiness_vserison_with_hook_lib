@@ -8,6 +8,7 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lody.virtual.client.VClient;
 import com.lody.virtual.client.core.VirtualCore;
 import com.lody.virtual.client.ipc.VActivityManager;
@@ -149,17 +150,22 @@ class HomePresenterImpl implements HomeContract.HomePresenter {
         ProgressDialog dialog = ProgressDialog.show(mActivity, null, mActivity.getString(R.string.tip_add_apps));
         VUiKit.defer().when(() -> {
             InstalledAppInfo installedAppInfo = VirtualCore.get().getInstalledAppInfo(info.packageName, 0);
+            Log.i("yich"," start install**");
             if (installedAppInfo != null) {
                 addResult.userId = MultiAppHelper.installExistedPackage(installedAppInfo);
             } else {
                 InstallResult res = mRepo.addVirtualApp(info);
+                Log.i("yich","  InstallResult："+new Gson().toJson(res));
                 if (!res.isSuccess) {
                     throw new IllegalStateException();
                 }
             }
         }).then((res) -> {
             addResult.appData = PackageAppDataStorage.get().acquire(info.packageName);
+            Log.i("yich","  install then ok**:"+new Gson().toJson(addResult.appData ));
         }).fail((e) -> {
+            e.printStackTrace();
+            Log.i("yich","  install then fail:"+e.getMessage());
             dialog.dismiss();
         }).done(res -> {
             if (addResult.userId == 0) {
