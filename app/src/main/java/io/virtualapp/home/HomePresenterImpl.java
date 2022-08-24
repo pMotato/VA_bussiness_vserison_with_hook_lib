@@ -19,6 +19,8 @@ import com.lody.virtual.remote.InstallResult;
 import com.lody.virtual.remote.InstalledAppInfo;
 import com.lody.virtual.server.bit64.V64BitHelper;
 
+import java.util.logging.Logger;
+
 import io.virtualapp.R;
 import io.virtualapp.VCommends;
 import io.virtualapp.abs.ui.VUiKit;
@@ -78,6 +80,7 @@ class HomePresenterImpl implements HomeContract.HomePresenter {
     public void launchApp(AppData data) {
         try {
             int userId = data.getUserId();
+            Log.i("'yich'","data:"+data.getPackageName()+"user:"+userId);
             String packageName = data.getPackageName();
             if (userId != -1 && packageName != null) {
                 boolean runAppNow = true;

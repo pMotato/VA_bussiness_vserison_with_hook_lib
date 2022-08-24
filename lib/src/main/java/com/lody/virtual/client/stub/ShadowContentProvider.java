@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.ConditionVariable;
 import android.os.IBinder;
 import android.os.Process;
+import android.util.Log;
 
 import com.lody.virtual.client.VClient;
 import com.lody.virtual.client.core.VirtualCore;
@@ -42,6 +43,7 @@ public class ShadowContentProvider extends ContentProvider {
 		Bundle res = new Bundle();
 		BundleCompat.putBinder(res, "_VA_|_client_", client.asBinder());
 		res.putInt("_VA_|_pid_", Process.myPid());
+		Log.i("yich","inited processed info:"+res.toString());
 		return res;
 	}
 
