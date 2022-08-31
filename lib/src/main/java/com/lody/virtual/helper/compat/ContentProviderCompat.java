@@ -3,22 +3,27 @@ package com.lody.virtual.helper.compat;
 import android.content.ContentProviderClient;
 import android.content.Context;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.SystemClock;
 
+import com.lody.virtual.helper.utils.VLog;
+
 /**
  * @author Lody
  */
 public class ContentProviderCompat {
+    private static String TAG="ContentProviderCompat";
 
     public static Bundle call(Context context, Uri uri, String method, String arg, Bundle extras, int retryCount) throws IllegalAccessException {
         if (VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
             return context.getContentResolver().call(uri, method, arg, extras);
         }
         ContentProviderClient client = acquireContentProviderClientRetry(context, uri, retryCount);
+        VLog.d(TAG," call uri ="+uri+";client="+client+"packege："+context.getPackageName());
         try {
             if (client == null) {
                 throw new IllegalAccessException();
@@ -39,6 +44,7 @@ public class ContentProviderCompat {
             }
             return context.getContentResolver().acquireContentProviderClient(uri);
         } catch (SecurityException e) {
+            VLog.e(TAG," call uri error ="+uri+e.getLocalizedMessage());
             e.printStackTrace();
         }
         return null;

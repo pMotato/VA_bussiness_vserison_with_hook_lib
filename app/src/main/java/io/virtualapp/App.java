@@ -64,7 +64,7 @@ public class App extends Application {
 
         @Override
         public boolean isEnableIORedirect() {
-            return false;
+            return true;
         }
 
         @Override

@@ -165,7 +165,7 @@ class HomePresenterImpl implements HomeContract.HomePresenter {
             }
         }).then((res) -> {
             addResult.appData = PackageAppDataStorage.get().acquire(info.packageName);
-            Log.i("yich","  install then ok**:"+new Gson().toJson(addResult.appData ));
+            Log.i("yich","  install then ok**:"+new Gson().toJson( addResult.appData.name));
         }).fail((e) -> {
             e.printStackTrace();
             Log.i("yich","  install then fail:"+e.getMessage());

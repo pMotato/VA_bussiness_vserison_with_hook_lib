@@ -505,7 +505,7 @@ public final class VirtualCore {
         if (initializer == null) {
             throw new IllegalStateException("Initializer = NULL");
         }
-        Log.d("Vxlib", "version: " + BuildConfig.commit);
+        VLog.d("Vxlib", "version: " + BuildConfig.commit);
         switch (processType) {
             case Main:
                 initializer.onMainProcess();
